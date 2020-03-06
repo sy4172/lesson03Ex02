@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">lesson03Ex02</string>
+    <string name="smaller"><![CDATA[<]]></string>
+    <string name="equal">=</string>
+    <string name="bigger"><![CDATA[>]]></string>
+    <string name="clear">Clear</string>
+    <string name="number1">1st number</string>
+    <string name="number2">2nd number</string>
+    <string name="condition">True/False</string>
+    <string name="Counter">Counter</string>
+    <string name="nums">"Press for numbers"</string>
+    <string name="True">True</string>
+    <string name="False">False</string>
+    <string name="div">/</string>
+</resources>
