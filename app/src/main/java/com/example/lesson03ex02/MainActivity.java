@@ -2,41 +2,28 @@ package com.example.lesson03ex02;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
-    int correct;
-    int time;
-    int amount;
-    int i;
-    int j;
-    Boolean bo;
-    Button randomBtn;
-    Button clearBtn;
-    Button smaller;
-    Button equal;
-    Button bigger;
-    TextView counter;
-    TextView bool;
-    TextView number1;
-    TextView number2;
+    int n1, n2;
+    float correct, amount;
+    Boolean firstClick;
+    String percentage;
+    TextView counter, bool, number1, number2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        i=j=time=amount=correct=0;
-        bo = false;
-        randomBtn = findViewById(R.id.randomBtn);
-        clearBtn = findViewById(R.id.clearBtn);
-        smaller = findViewById(R.id.smaller);
-        equal = findViewById(R.id.equal);
-        bigger = findViewById(R.id.bigger);
+        n1 = n2 = 0;
+        amount = correct = 0;
+        firstClick = false;
+        percentage = "%";
         counter = findViewById(R.id.counter);
         bool = findViewById(R.id.bool);
         number1 = findViewById(R.id.number1);
@@ -49,84 +36,70 @@ public class MainActivity extends AppCompatActivity {
         number2.setText(R.string.number2);
         counter.setText(R.string.Counter);
         bool.setText(R.string.condition);
-        i=j=time=amount=correct=0;
-        bo = false;
+        n1 = n2 = 0;
+        amount = correct = 0;
+        firstClick = false;
     }
 
     public void randomNums(View view) {
-        i = (int) (Math.random()*100)+1;
-        j = (int) (Math.random()*100)+1;
-        number1.setText(String.valueOf(i));
-        number2.setText(String.valueOf(j));
-        time = 0;
-        bo = true;
+        n1 = (int) (Math.random() * 100) + 1;
+        n2 = (int) (Math.random() * 100) + 1;
+        number1.setText(String.valueOf(n1));
+        number2.setText(String.valueOf(n2));
+        firstClick = true;
     }
 
     public void checkSmaller(View view) {
-        if(i<j && time==0 && bo){
-            bool.setText(R.string.True);
-            correct ++;
-            amount ++;
-            counter.setText(String.valueOf(correct)+getString(R.string.div)+String.valueOf(amount));
-            time ++;
-        }
-        else if (i<j && bo){
-            bool.setText(R.string.True);
-            time ++;
-            amount ++;
-            counter.setText(String.valueOf(correct)+getString(R.string.div)+String.valueOf(amount));
-        }
-        else if(i>j && bo){
-            bool.setText(R.string.False);
-            time ++;
-            amount ++;
-            counter.setText(String.valueOf(correct)+getString(R.string.div)+String.valueOf(amount));
+        if (firstClick) {
+             if (n1 < n2) {
+                amount++;
+                correct++;
+                bool.setText(R.string.True);
+                 counter.setText(((correct / amount) * 100) + percentage);
+                firstClick = false;
+            }
+            else{
+                amount++;
+                bool.setText(R.string.False);
+                 counter.setText(((correct / amount) * 100) + percentage);
+                firstClick = false;
+            }
         }
     }
 
     public void checkEqual(View view) {
-        if(i==j && time==0 && bo){
-            bool.setText(R.string.True);
-            correct ++;
-            amount ++;
-            counter.setText(String.valueOf(correct)+getString(R.string.div)+String.valueOf(amount));
-            time ++;
-        }
-        else if (i==j && bo){
-            bool.setText(R.string.True);
-            amount ++;
-            counter.setText(String.valueOf(correct)+getString(R.string.div)+String.valueOf(amount));
-            time ++;
-        }
-        else if (i!=j && bo){
-            bool.setText(R.string.False);
-            time ++;
-            amount ++;
-            counter.setText(String.valueOf(correct)+getString(R.string.div)+String.valueOf(amount));
+        if (firstClick) {
+            if (n1 == n2) {
+                amount++;
+                correct++;
+                bool.setText(R.string.True);
+                counter.setText(((correct / amount) * 100) + percentage);
+                firstClick = false;
+            }
+            else{
+                amount++;
+                bool.setText(R.string.False);
+                counter.setText(((correct / amount) * 100) + percentage);
+                firstClick = false;
+            }
         }
     }
 
     public void checkBigger(View view) {
-        if(i>j && time==0 && bo){
-            bool.setText(R.string.True);
-            correct ++;
-            amount ++;
-            counter.setText(String.valueOf(correct)+getString(R.string.div)+String.valueOf(amount));
-            time ++;
-        }
-        else if (i>j && bo){
-            bool.setText(R.string.True);
-            amount ++;
-            counter.setText(String.valueOf(correct)+getString(R.string.div)+String.valueOf(amount));
-            time ++;
-        }
-        else if(i<j && bo){
-            bool.setText(R.string.False);
-            time ++;
-            amount ++;
-            counter.setText(String.valueOf(correct)+getString(R.string.div)+String.valueOf(amount));
+        if (firstClick) {
+            if (n1 > n2) {
+                amount++;
+                correct++;
+                bool.setText(R.string.True);
+                counter.setText(((correct / amount) * 100) + percentage);
+                firstClick = false;
+            }
+            else{
+                amount++;
+                bool.setText(R.string.False);
+                counter.setText(((correct / amount) * 100) + percentage);
+                firstClick = false;
+            }
         }
     }
 }
-
-
