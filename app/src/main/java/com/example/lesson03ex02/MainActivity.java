@@ -12,7 +12,6 @@ public class MainActivity extends AppCompatActivity {
     int n1, n2;
     float correct, amount;
     Boolean firstClick;
-    String percentage;
     TextView counter, bool, number1, number2;
 
     @Override
@@ -23,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         n1 = n2 = 0;
         amount = correct = 0;
         firstClick = false;
-        percentage = "%";
         counter = findViewById(R.id.counter);
         bool = findViewById(R.id.bool);
         number1 = findViewById(R.id.number1);
@@ -55,13 +53,13 @@ public class MainActivity extends AppCompatActivity {
                 amount++;
                 correct++;
                 bool.setText(R.string.True);
-                 counter.setText(((correct / amount) * 100) + percentage);
+                 counter.setText(String.format("%.0f%%",((correct / amount) * 100)));
                 firstClick = false;
             }
             else{
                 amount++;
                 bool.setText(R.string.False);
-                 counter.setText(((correct / amount) * 100) + percentage);
+                 counter.setText(String.format("%.0f%%",((correct / amount) * 100)));
                 firstClick = false;
             }
         }
@@ -73,13 +71,13 @@ public class MainActivity extends AppCompatActivity {
                 amount++;
                 correct++;
                 bool.setText(R.string.True);
-                counter.setText(((correct / amount) * 100) + percentage);
+                counter.setText(String.format("%.0f%%",((correct / amount) * 100)));
                 firstClick = false;
             }
             else{
                 amount++;
                 bool.setText(R.string.False);
-                counter.setText(((correct / amount) * 100) + percentage);
+                counter.setText(String.format("%.0f%%",((correct / amount) * 100)));
                 firstClick = false;
             }
         }
@@ -91,13 +89,13 @@ public class MainActivity extends AppCompatActivity {
                 amount++;
                 correct++;
                 bool.setText(R.string.True);
-                counter.setText(((correct / amount) * 100) + percentage);
+                counter.setText(String.format("%.0f%%",((correct / amount) * 100)));
                 firstClick = false;
             }
             else{
                 amount++;
                 bool.setText(R.string.False);
-                counter.setText(((correct / amount) * 100) + percentage);
+                counter.setText(String.format("%.0f%%",((correct / amount) * 100)));
                 firstClick = false;
             }
         }
